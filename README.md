@@ -123,4 +123,4 @@ Set-Location E:\ProofLens-AI\backend
 uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-For a hosted demo, serve `frontend\dist` as static files behind an HTTPS reverse proxy and forward requests under `/api/` to the backend. Keep Uvicorn bound to loopback behind that proxy. A same-origin proxy avoids cross-origin browser requests; if hosting the UI on a separate origin, configure FastAPI CORS with that exact origin. The current starter is not production-hardened: add authentication, per-user document isolation, persistent storage, request limits, and operational monitoring before exposing private documents publicly.
+For a hosted demo, the included `Dockerfile` builds the frontend and serves it from the FastAPI application, so the UI and `/api` share one HTTPS origin. `render.yaml` defines this as a Render web service with `/api/health` as its health check. The current starter is not production-hardened: add authentication, per-user document isolation, persistent storage, request limits, and operational monitoring before exposing private documents publicly.
